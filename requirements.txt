@@ -1,0 +1,6 @@
+mypy
+pyqt5
+anki
+aqt
+black
+pyuic5-tool

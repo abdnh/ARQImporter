@@ -1,0 +1,81 @@
+.card {
+    font-family: MyFont, sans-serif;
+    font-size: 23px; /*هذا الرقم خاص بتغيير حجم الخط*/
+    max-width: 620px;
+    background-color: #fffff9;
+    direction: rtl;
+    margin: 5px auto;
+    text-align: center; /*لتوسيط النصوص غير الكلمة بعد النقطتين إلى justify*/
+    padding: 0 5px;
+    line-height: 1.8em;
+}
+
+.card.nightMode {
+    background: #555;
+    color:#eee;
+}
+
+.alert {
+    position: relative;
+    padding: 15px;
+    margin-bottom:5px;
+    border-radius: .25rem;
+}
+
+.lines {
+    color: #004085;
+    background: #cce5ff;
+}
+
+.extra {
+    color: #856404;
+    background: #fff3cd;
+}
+
+.nightMode .lines, .nightMode .extra {
+    background: #476d7c;
+    color: #fff;
+}
+
+.cloze {
+    color: #155724;
+    background: #d4edda;
+}
+
+.nightMode .cloze {
+    background: #254b62;
+    color: #fff;
+}
+
+.title {
+    font-size: 18px;
+    margin: 2px auto 10px;
+    background: #ddd;
+    padding: 0 8%;
+    border-radius: .25rem;
+}
+
+.nightMode .title {
+    background: #414141;
+    color: #fff;
+}
+
+a.text {
+  text-decoration: none;
+}
+
+
+@font-face {
+    font-family: MyFont;
+    font-weight: 500;
+    src: url('_Sh_LoutsSh.ttf');
+}
+
+@font-face {
+    font-family: MyFont;
+    font-weight: 700;
+    src: url('_Sh_LoutsShB.ttf');
+}
+/*Start of style added by resize image add-on. Don't edit directly or the edition will be lost. Edit via the add-on configuration */
+.mobile .card img {height:unset  !important; width:unset  !important;}
+/*End of style added by resize image add-on*/

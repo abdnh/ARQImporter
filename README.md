@@ -12,12 +12,16 @@
 
 ![مقدمة بطاقة](screenshots/front.jpg)
 
-![خلف بطاقة](screenshots/front.jpg)
+![خلف بطاقة](screenshots/back.jpg)
 
 ![إظهار كامل مجموع الأسئلة خلف البطاقة](screenshots/whole_text.jpg)
 
 الإضافة مبنية على إضافة [ARLPCG](https://ankiweb.net/shared/info/1642554134)،
 والتي بدورها مشتقة من إضافة [LPCG](https://ankiweb.net/shared/info/2084557901).
+
+## تنزيل
+
+يمكنك تنزيل الإضافة من صفحتها على أنكي ويب: https://ankiweb.net/shared/info/1299710950
 
 ## الدعم
 

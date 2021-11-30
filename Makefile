@@ -1,4 +1,4 @@
-.PHONY: all forms zip clean format check
+.PHONY: all forms zip clean format check tests
 all: forms zip
 
 forms: src/import_dialog.py
@@ -18,6 +18,9 @@ format:
 
 check:
 	python -m mypy src/ tests/
+
+tests:
+	python -m unittest
 
 clean:
 	rm -f *.pyc

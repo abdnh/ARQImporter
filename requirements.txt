@@ -1,6 +1,6 @@
 mypy
 pyqt5
-anki
-aqt
+anki>=2.1.49
+aqt>=2.1.49
 black
 pyuic5-tool

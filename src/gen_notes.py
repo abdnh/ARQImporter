@@ -164,7 +164,7 @@ def add_notes(
         chapter = line["chapter"]
         n = note_constructor(col, model)
         populate_note(n, added + 1, title, tags, question, answer, chapter, deck_id)
-        col.addNote(n)
+        col.add_note(n, deck_id)
         added += 1
 
     if not TESTING:

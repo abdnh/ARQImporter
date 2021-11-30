@@ -179,7 +179,7 @@ class MockCollection:
     def __init__(self):
         self.notes = []
 
-    def addNote(self, note):
+    def add_note(self, note, deck_id):
         self.notes.append(note)
 
     @property

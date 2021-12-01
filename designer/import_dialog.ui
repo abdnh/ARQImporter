@@ -34,7 +34,7 @@
      <item row="2" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>الو&amp;سوم</string>
+        <string>الوسوم</string>
        </property>
        <property name="buddy">
         <cstring>tagsBox</cstring>
@@ -187,7 +187,7 @@
      <item>
       <widget class="QPushButton" name="helpButton">
        <property name="text">
-        <string>&amp;مساعدة</string>
+        <string>مساعدة</string>
        </property>
       </widget>
      </item>
@@ -197,7 +197,7 @@
         <string>يستبدل محتوى محرر النص بمحتوى ملف نصي على حاسوبك.</string>
        </property>
        <property name="text">
-        <string>&amp;فتح ملف</string>
+        <string>فتح ملف</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -226,7 +226,7 @@
         <string>يولد ملحوظات من النص في محرر النص</string>
        </property>
        <property name="text">
-        <string>&amp;إضافة ملحوظات</string>
+        <string>إضافة ملحوظات</string>
        </property>
        <property name="shortcut">
         <string>Ctrl+Return</string>
@@ -245,7 +245,7 @@
      <item>
       <widget class="QPushButton" name="cancelButton">
        <property name="text">
-        <string>&amp;إلغاء</string>
+        <string>إلغاء</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>

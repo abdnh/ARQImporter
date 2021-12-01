@@ -1,13 +1,13 @@
 .PHONY: all forms zip clean format check tests
-all: forms zip
+all: zip
 
 forms: src/import_dialog.py
-zip: arq_importer.ankiaddon
+zip: forms ARQImporter.ankiaddon
 
 src/import_dialog.py: designer/import_dialog.ui
 	pyuic5 $^ > $@
 
-arq_importer.ankiaddon: src/*
+ARQImporter.ankiaddon: src/*
 	rm -f $@
 	rm -f src/meta.json
 	rm -rf src/__pycache__
@@ -27,4 +27,4 @@ clean:
 	rm -f src/*.pyc
 	rm -f src/__pycache__
 	rm -f src/import_dialog.py
-	rm -f arq_importer.ankiaddon
+	rm -f ARQImporter.ankiaddon

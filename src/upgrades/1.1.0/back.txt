@@ -1,6 +1,10 @@
 <div class="title">{{باب}}</div>
 <div class="lines alert">{{سؤال}}</div>
 <div class="cloze alert">{{جواب}}</div>
+<div class="alert counterbox" id="reps">
+    <a id="clicks">0</a>
+    <span id="reset">إعادة</span>
+</div>
 {{#إضافي}}
 <div class="extra">{{إضافي}}</div>
 {{/إضافي}}
@@ -28,3 +32,16 @@
 </script>
 
 <script src="_{{عنوان}}.js"></script>
+
+<script>
+    var counter = 0;
+    document.getElementById("reps").addEventListener('click', function (event) {
+          counter += 1;
+          document.getElementById("clicks").innerHTML = counter;
+     });
+    document.getElementById("reset").addEventListener('click', function (event) {
+          event.stopImmediatePropagation();
+          counter = 0;
+          document.getElementById("clicks").innerHTML = counter;
+     });
+</script>

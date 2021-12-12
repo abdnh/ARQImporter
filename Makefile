@@ -7,7 +7,7 @@ zip: forms ARQImporter.ankiaddon
 src/import_dialog.py: designer/import_dialog.ui
 	pyuic5 $^ > $@
 
-ARQImporter.ankiaddon: src/*
+ARQImporter.ankiaddon: $(shell find src/ -type f)
 	rm -f $@
 	rm -f src/meta.json
 	rm -rf src/__pycache__

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>561</width>
+    <width>640</width>
     <height>759</height>
    </rect>
   </property>
@@ -106,6 +106,26 @@
       <widget class="QCheckBox" name="recognizeChaptersCheckBox">
        <property name="text">
         <string>التعرف على الأبواب التي تبدأ برمز</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLineEdit" name="extraLineEdit">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="text">
+        <string>$</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QCheckBox" name="recognizeExtraCheckBox">
+       <property name="text">
+        <string>التعرف على المعلومات الإضافية التي تبدأ برمز</string>
        </property>
       </widget>
      </item>

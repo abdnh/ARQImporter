@@ -30,6 +30,9 @@ class ARQImporterDialog(QDialog):
         self.form.recognizeChaptersCheckBox.toggled.connect(
             lambda t: self.form.chapterLineEdit.setEnabled(t)
         )
+        self.form.recognizeExtraCheckBox.toggled.connect(
+            lambda t: self.form.extraLineEdit.setEnabled(t)
+        )
 
         opt = QTextOption()
         opt.setTextDirection(Qt.RightToLeft)
@@ -62,6 +65,11 @@ class ARQImporterDialog(QDialog):
             if self.form.recognizeChaptersCheckBox.isChecked()
             else None
         )
+        extra_marker = (
+            self.form.extraLineEdit.text()
+            if self.form.recognizeExtraCheckBox.isChecked()
+            else None
+        )
 
         try:
             notes_generated = add_notes(
@@ -74,6 +82,7 @@ class ARQImporterDialog(QDialog):
                 qa_marker,
                 question_marker,
                 chapter_marker,
+                extra_marker,
             )
         except KeyError as e:
             showWarning(

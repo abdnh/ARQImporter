@@ -21,6 +21,7 @@ def populate_note(
     question: str,
     answer: str,
     chapter: str,
+    extra: str,
     deck_id: int,
 ) -> None:
 
@@ -29,6 +30,7 @@ def populate_note(
     note["سؤال"] = question
     note["جواب"] = answer
     note["باب"] = chapter
+    note["إضافي"] = extra
     note["عنوان"] = title
     note["رقم السؤال"] = str(seq)
     note["كل الأسئلة"] = f'<img src="_{title}.js">'
@@ -39,6 +41,7 @@ def parse_questions(
     qa_marker: str,
     question_marker: bool,
     chapter_marker: Optional[str],
+    extra_marker: Optional[str],
 ) -> List:
     """
     Parse question pairs. If _question_marker_ is true, treat the _qa_marker_ as a
@@ -46,7 +49,11 @@ def parse_questions(
     """
 
     def is_chapter_line(i):
-        return i < len(lines) and chapter_marker and lines[i].startswith(chapter_marker)
+        return (
+            i < len(lines)
+            and bool(chapter_marker)
+            and lines[i].startswith(chapter_marker)
+        )
 
     def is_question_line(i):
         if i >= len(lines):
@@ -61,12 +68,30 @@ def parse_questions(
     def is_answer_line(i):
         if i >= len(lines):
             return False
-        return not is_chapter_line(i) and not is_question_line(i)
+        res = (
+            (qa_marker in lines[i])
+            if not question_marker
+            else (qa_marker not in lines[i])
+        )
+        res &= (
+            not is_chapter_line(i) and not is_question_line(i) and not is_extra_line(i)
+        )
+
+        return res
+
+    def is_extra_line(i):
+        if i >= len(lines):
+            return False
+        res = bool(extra_marker) and lines[i].startswith(extra_marker)
+        res &= not is_chapter_line(i) and qa_marker not in lines[i]
+
+        return res
 
     ret = []
     cur_question = []
     cur_answer = []
     cur_chapter = []
+    cur_extra = []
 
     i = 0
     while i < len(lines):
@@ -81,15 +106,20 @@ def parse_questions(
         while is_answer_line(i):
             cur_answer.append(lines[i])
             i += 1
+        while is_extra_line(i):
+            cur_extra.append(lines[i][len(extra_marker) :].strip())
+            i += 1
         ret.append(
             {
                 "question": "<br>".join(cur_question),
                 "answer": "<br>".join(cur_answer),
                 "chapter": "<br>".join(cur_chapter),
+                "extra": "<br>".join(cur_extra),
             }
         )
         cur_question = []
         cur_answer = []
+        cur_extra = []
 
     return ret
 
@@ -153,17 +183,23 @@ def add_notes(
     separator: str = "?",
     question_marker: bool = True,
     chapter_marker: Optional[str] = None,
+    extra_marker: Optional[str] = None,
 ):
 
     added = 0
     model = col.models.by_name("ARQ 1.0")
-    lines = parse_questions(text, separator, question_marker, chapter_marker)
+    lines = parse_questions(
+        text, separator, question_marker, chapter_marker, extra_marker
+    )
     for line in lines:
         question = line["question"]
         answer = line["answer"]
         chapter = line["chapter"]
+        extra = line["extra"]
         n = note_constructor(col, model)
-        populate_note(n, added + 1, title, tags, question, answer, chapter, deck_id)
+        populate_note(
+            n, added + 1, title, tags, question, answer, chapter, extra, deck_id
+        )
         col.add_note(n, deck_id)
         added += 1
 

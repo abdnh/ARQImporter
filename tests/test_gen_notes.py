@@ -163,6 +163,13 @@ test_text = """
 90- وَاكْتَمَلَتْ مَبَاحِثُ الأُصُولِ .. وَصَلِّ يَارَبِّ عَلَى الرَّسُولِ **
 """
 
+test_text2 = """
+ما مقدار الماء الكثير ؟
+وَالكَثِيرُ: قُلَّتَانِ، وَهُمَا: مِائَةُ رِطْلٍ  وَسَبْعَةُ أَرْطَالٍ وَسُبُعُ رِطْلٍ بِالدِّمَشْقِيِّ،
+وَاليَسِيرُ: مَا دُونَهُمَا.
+$ ٣٠٠ لتر تقريبا
+"""
+
 
 class MockModel:
     def __init__(self):
@@ -216,6 +223,7 @@ def mock_note():
     separator = "؟"
     question_marker = True
     chapter_marker = "#"
+    extra_marker = None
     text = cleanse_text(test_text)
     return dict(locals())
 
@@ -245,6 +253,7 @@ class TestGenNotes(unittest.TestCase):
         )
         for note in notes:
             self.assertEqual(note["باب"], "النظم الصغير")
+            self.assertEqual(note["إضافي"], "")
 
     def test_answer_marker(self):
         self.mock_note["question_marker"] = False
@@ -268,6 +277,15 @@ class TestGenNotes(unittest.TestCase):
         )
         for note in notes:
             self.assertEqual(note["باب"], "النظم الصغير")
+            self.assertEqual(note["إضافي"], "")
+
+    def test_extra_marker(self):
+        self.mock_note["text"] = cleanse_text(test_text2)
+        self.mock_note["extra_marker"] = "$"
+        added = add_notes(**self.mock_note)
+        self.assertEqual(added, 1)
+        notes = self.mock_note["col"].notes
+        self.assertEqual(notes[0]["إضافي"], "٣٠٠ لتر تقريبا")
 
 
 if __name__ == "__main__":

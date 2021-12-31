@@ -153,8 +153,8 @@ def write_question_set_to_file(question_set, title):
 
     def format_line(line):
         nonlocal current
-        question = "س: " + line["question"]
-        answer = "ج: " + line["answer"]
+        question = line["question"]
+        answer = line["answer"]
         text = question + "<br>" + answer
         s = f'<p id="arq-{current}">{text}</p>'
         current += 1

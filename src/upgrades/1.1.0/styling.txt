@@ -22,9 +22,14 @@
     border-radius: .25rem;
 }
 
-.lines {
+.question {
     color: #004085;
     background: #cce5ff;
+}
+
+.nightMode .question {
+    background: #479da0;
+    color: #fff;
 }
 
 .extra {
@@ -32,17 +37,20 @@
     background: #fff3cd;
 }
 
-.nightMode .lines, .nightMode .extra {
+.nightMode .extra {
     background: #476d7c;
+}
+
+.nightMode .question, .nightMode .extra {
     color: #fff;
 }
 
-.cloze {
+.answer {
     color: #155724;
     background: #d4edda;
 }
 
-.nightMode .cloze {
+.nightMode .answer {
     background: #254b62;
     color: #fff;
 }
@@ -59,6 +67,15 @@
 .nightMode .title {
     background: #414141;
     color: #fff;
+}
+
+.allquestions {
+    background: #ddd;
+    padding-top: 5px;
+}
+
+.nightMode .allquestions {
+    background: #414141;
 }
 
 a.text {

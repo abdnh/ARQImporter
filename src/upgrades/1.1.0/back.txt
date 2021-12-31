@@ -1,15 +1,15 @@
 <div class="title">{{باب}}</div>
-<div class="lines alert">{{سؤال}}</div>
-<div class="cloze alert">{{جواب}}</div>
+<div class="question alert">{{سؤال}}</div>
+<div class="answer alert">{{جواب}}</div>
 <div class="alert counterbox" id="reps">
     <a id="clicks">0</a>
     <span id="reset">إعادة</span>
 </div>
 {{#إضافي}}
-<div class="extra">{{إضافي}}</div>
+<div class="extra alert">{{إضافي}}</div>
 {{/إضافي}}
 
-<div class="alert extra">
+<div class="alert allquestions">
     <div id="hintlink" style="display:none"></div>
     <a href="#" id="show-all">كل الأسئلة</a>
     <br>
@@ -17,12 +17,32 @@
 
 <script>
     (function () {
-        let hintLink = document.getElementById('hintlink');
-        let showAllLink = document.getElementById('show-all');
+        const hintLink = document.getElementById('hintlink');
+        const showAllLink = document.getElementById('show-all');
         showAllLink.addEventListener('click', (e) => {
             showAllLink.style.display = 'none';
             if(typeof ARQText !== 'undefined') {
-                hintLink.innerHTML = ARQText;
+                const div = document.createElement("div");
+                const allQuestionsContainer = document.createElement("div");
+                allQuestionsContainer.innerHTML = ARQText;
+                const header = document.createElement("h2");
+                header.textContent = showAllLink.textContent;
+                div.appendChild(header);
+                div.appendChild(allQuestionsContainer);
+                for(const child of allQuestionsContainer.children) {
+                    const question = child.childNodes[0].textContent;
+                    const questionDiv = document.createElement("div");
+                    questionDiv.textContent = question;
+                    questionDiv.classList.add("question", "alert");
+
+                    const answer = child.childNodes[2].textContent;
+                    const answerDiv = document.createElement("div");
+                    answerDiv.textContent = answer;
+                    answerDiv.classList.add("answer", "alert");
+
+                    child.innerHTML = questionDiv.outerHTML + answerDiv.outerHTML;
+                }
+                hintLink.innerHTML = div.innerHTML;
             }
             hintLink.style.display = 'block';
             document.getElementById('arq-{{رقم السؤال}}').scrollIntoView({behavior: "smooth", inline: "start"});

@@ -1,2 +1,2 @@
 <div class="title">{{باب}}</div>
-<div class="lines alert">{{سؤال}}</div>
+<div class="question alert">{{سؤال}}</div>

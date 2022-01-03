@@ -1,5 +1,4 @@
-<div class="title">{{باب}}</div>
-<div class="question alert">{{سؤال}}</div>
+{{FrontSide}}
 <div class="answer alert">{{جواب}}</div>
 <div class="alert counterbox" id="reps">
     <a id="clicks">0</a>

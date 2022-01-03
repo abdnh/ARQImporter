@@ -30,17 +30,10 @@
                 div.appendChild(header);
                 div.appendChild(allQuestionsContainer);
                 for(const child of allQuestionsContainer.children) {
-                    const question = child.childNodes[0].textContent;
-                    const questionDiv = document.createElement("div");
-                    questionDiv.textContent = question;
-                    questionDiv.classList.add("question", "alert");
-
-                    const answer = child.childNodes[2].textContent;
-                    const answerDiv = document.createElement("div");
-                    answerDiv.textContent = answer;
-                    answerDiv.classList.add("answer", "alert");
-
-                    child.innerHTML = questionDiv.outerHTML + answerDiv.outerHTML;
+                    const questionElement = child.childNodes[0];
+                    questionElement.classList.add("question", "alert");
+                    const answerElement = child.childNodes[1];
+                    answerElement.classList.add("answer", "alert");
                 }
                 hintLink.innerHTML = div.innerHTML;
             }

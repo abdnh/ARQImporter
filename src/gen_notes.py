@@ -155,8 +155,7 @@ def write_question_set_to_file(question_set, title):
         nonlocal current
         question = line["question"]
         answer = line["answer"]
-        text = question + "<br>" + answer
-        s = f'<p id="arq-{current}">{text}</p>'
+        s = f'<div id="arq-{current}"><div id="arq-q-{current}">{question}</div><div id="arq-a-{current}">{answer}</div></div>'
         current += 1
         return s
 

@@ -47,6 +47,17 @@ class ARQImporterDialog(QDialog):
             showWarning("يجب أن تدخل عنوانًا لمجموعة الأسئلة.")
             return
 
+        escaped_title = title.replace('"', '\\"')
+        if self.mw.col.find_notes(
+            f'"note:{models.ARQOne.name}" ' f'"عنوان:{escaped_title}"'
+        ):
+            showWarning(
+                "لديك بالفعل مجموعة أسئلة لها العنوان نفسه في مجموعتك. "
+                "انظر ما إذا كنت بالفعل قد أضفت هذه الأسئلة، "
+                "أو استخدم اسمًا مختلفًا."
+            )
+            return
+
         if not self.form.textBox.toPlainText().strip():
             showWarning(
                 "لا يوجد شيء لتوليد البطاقات! "

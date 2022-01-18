@@ -22,12 +22,12 @@
     border-radius: .25rem;
 }
 
-.question {
+.arq-q {
     color: #004085;
     background: #cce5ff;
 }
 
-.nightMode .question {
+.nightMode .arq-q {
     background: #479da0;
     color: #fff;
 }
@@ -41,16 +41,16 @@
     background: #476d7c;
 }
 
-.nightMode .question, .nightMode .extra {
+.nightMode .arq-q, .nightMode .extra {
     color: #fff;
 }
 
-.answer {
+.arq-a {
     color: #155724;
     background: #d4edda;
 }
 
-.nightMode .answer {
+.nightMode .arq-a {
     background: #254b62;
     color: #fff;
 }

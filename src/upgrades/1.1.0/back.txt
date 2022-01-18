@@ -1,5 +1,5 @@
 {{FrontSide}}
-<div class="answer alert">{{جواب}}</div>
+<div class="arq-a alert">{{جواب}}</div>
 <div class="alert counterbox" id="reps">
     <a id="clicks">0</a>
     <span id="reset">إعادة</span>
@@ -30,9 +30,9 @@
                 div.appendChild(allQuestionsContainer);
                 for(const child of allQuestionsContainer.children) {
                     const questionElement = child.childNodes[0];
-                    questionElement.classList.add("question", "alert");
+                    questionElement.classList.add("arq-q", "alert");
                     const answerElement = child.childNodes[1];
-                    answerElement.classList.add("answer", "alert");
+                    answerElement.classList.add("arq-a", "alert");
                 }
                 hintLink.innerHTML = div.innerHTML;
             }

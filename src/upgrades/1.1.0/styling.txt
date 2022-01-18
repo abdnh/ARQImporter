@@ -5,7 +5,7 @@
     background-color: #fffff9;
     direction: rtl;
     margin: 5px auto;
-    text-align: center; /*لتوسيط النصوص غير الكلمة بعد النقطتين إلى justify*/
+    text-align: justify;
     padding: 0 5px;
     line-height: 1.8em;
 }
@@ -62,6 +62,7 @@
     width: max-content;
     padding: 0 8%;
     border-radius: .25rem;
+    text-align: center;
 }
 
 .nightMode .title {

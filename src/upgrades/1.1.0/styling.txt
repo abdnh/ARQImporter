@@ -121,6 +121,19 @@ a.text {
     padding: 5px 20px;
     color: #000;
 }
+
+#hintlink {
+    display: none;
+}
+
+#show-all {
+    display: block;
+}
+
+#show-all, #hintlink > h2 {
+    text-align: center;
+}
+
 @font-face {
     font-family: MyFont;
     font-weight: 500;

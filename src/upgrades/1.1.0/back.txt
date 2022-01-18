@@ -9,9 +9,8 @@
 {{/إضافي}}
 
 <div class="alert allquestions">
-    <div id="hintlink" style="display:none"></div>
     <a href="#" id="show-all">كل الأسئلة</a>
-    <br>
+    <div id="hintlink"></div>
 </div>
 
 <script>

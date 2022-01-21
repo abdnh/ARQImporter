@@ -151,18 +151,25 @@ def cleanse_text(string: str) -> List[str]:
 def write_question_set_to_file(question_set, title):
     current = 1
 
-    def format_line(line):
+    def format_line(line, previos_line):
         nonlocal current
         question = line["question"]
         answer = line["answer"]
-        s = f'<div id="arq-{current}"><div id="arq-q-{current}">{question}</div><div id="arq-a-{current}">{answer}</div></div>'
-        current += 1
-        return s
+        chapter = line["chapter"]
+        prev_chapter = previos_line["chapter"]
+        if chapter != prev_chapter:
+            s = f'<div class="title">{chapter}<div></div><div></div></div><div id="arq-{current}"><div id="arq-q-{current}">{question}</div><div id="arq-a-{current}">{answer}</div></div>'
+            current += 1
+            return s
+        else:
+            s = f'<div id="arq-{current}"><div id="arq-q-{current}">{question}</div><div id="arq-a-{current}">{answer}</div></div>'
+            current += 1
+            return s
 
     lines = []
 
-    for line in question_set:
-        lines.append(format_line(line))
+    for current_line, line in enumerate(question_set):
+        lines.append(format_line(line, question_set[current_line-1]))
 
     # save question set to media folder
     text = "".join(lines)

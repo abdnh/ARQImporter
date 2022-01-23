@@ -12,14 +12,13 @@
     <a href="#" id="show-all">كل الأسئلة</a>
     <div id="hintlink"></div>
 </div>
-
 <script>
     (function () {
         const hintLink = document.getElementById('hintlink');
         const showAllLink = document.getElementById('show-all');
         showAllLink.addEventListener('click', (e) => {
             showAllLink.style.display = 'none';
-            if(typeof ARQText !== 'undefined') {
+            if (typeof ARQText !== 'undefined') {
                 const div = document.createElement("div");
                 const allQuestionsContainer = document.createElement("div");
                 allQuestionsContainer.innerHTML = ARQText;
@@ -28,9 +27,9 @@
                 div.appendChild(header);
                 div.appendChild(allQuestionsContainer);
                 let seq = 1;
-                for(let i = 0; i < allQuestionsContainer.children.length; i++) {
+                for (let i = 0; i < allQuestionsContainer.children.length; i++) {
                     const child = allQuestionsContainer.children[i];
-                    if(child.children.length == 0) {
+                    if (child.children.length == 0) {
                         child.classList.add("title");
                         continue;
                     }
@@ -46,7 +45,10 @@
                 hintLink.innerHTML = div.innerHTML;
             }
             hintLink.style.display = 'block';
-            document.getElementById('arq-{{رقم السؤال}}').scrollIntoView({behavior: "smooth", inline: "start"});
+            document.getElementById('arq-{{رقم السؤال}}').scrollIntoView({
+                behavior: "smooth",
+                inline: "start"
+            });
             e.preventDefault();
         });
     })();
@@ -57,12 +59,12 @@
 <script>
     var counter = 0;
     document.getElementById("reps").addEventListener('click', function (event) {
-          counter += 1;
-          document.getElementById("clicks").innerHTML = counter;
-     });
+        counter += 1;
+        document.getElementById("clicks").innerHTML = counter;
+    });
     document.getElementById("reset").addEventListener('click', function (event) {
-          event.stopImmediatePropagation();
-          counter = 0;
-          document.getElementById("clicks").innerHTML = counter;
-     });
+        event.stopImmediatePropagation();
+        counter = 0;
+        document.getElementById("clicks").innerHTML = counter;
+    });
 </script>

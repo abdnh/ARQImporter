@@ -28,10 +28,18 @@
                 div.appendChild(header);
                 div.appendChild(allQuestionsContainer);
                 for(const child of allQuestionsContainer.children) {
-                    if(child.children.length==0){continue;}
-                    const questionElement = child.childNodes[0];
+                    let questionElement, answerElement, titleElement;
+                    if(child.children.length == 2) {
+                        questionElement = child.children[0];
+                        answerElement = child.children[1];
+                    }
+                    else {
+                        titleElement = child.children[0];
+                        questionElement = child.children[1];
+                        answerElement = child.children[2];
+                        titleElement.classList.add("title");
+                    }
                     questionElement.classList.add("arq-q", "alert");
-                    const answerElement = child.childNodes[1];
                     answerElement.classList.add("arq-a", "alert");
                 }
                 hintLink.innerHTML = div.innerHTML;

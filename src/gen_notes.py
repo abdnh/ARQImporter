@@ -157,19 +157,17 @@ def write_question_set_to_file(question_set, title):
         answer = line["answer"]
         chapter = line["chapter"]
         prev_chapter = previos_line["chapter"]
+        s = f'<div id="arq-q-{current}">{question}</div><div id="arq-a-{current}">{answer}</div>'
         if chapter != prev_chapter:
-            s = f'<div class="title">{chapter}<div></div><div></div></div><div id="arq-{current}"><div id="arq-q-{current}">{question}</div><div id="arq-a-{current}">{answer}</div></div>'
-            current += 1
-            return s
-        else:
-            s = f'<div id="arq-{current}"><div id="arq-q-{current}">{question}</div><div id="arq-a-{current}">{answer}</div></div>'
-            current += 1
-            return s
+            s = f"<div>{chapter}</div>" + s
+        s = f'<div id="arq-{current}">{s}</div>'
+        current += 1
+        return s
 
     lines = []
 
     for current_line, line in enumerate(question_set):
-        lines.append(format_line(line, question_set[current_line-1]))
+        lines.append(format_line(line, question_set[current_line - 1]))
 
     # save question set to media folder
     text = "".join(lines)

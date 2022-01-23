@@ -157,10 +157,10 @@ def write_question_set_to_file(question_set, title):
         answer = line["answer"]
         chapter = line["chapter"]
         prev_chapter = previos_line["chapter"]
-        s = f'<div id="arq-q-{current}">{question}</div><div id="arq-a-{current}">{answer}</div>'
+        s = f"<div>{question}</div><div>{answer}</div>"
         if chapter != prev_chapter:
             s = f"<div>{chapter}</div>" + s
-        s = f'<div id="arq-{current}">{s}</div>'
+        s = f"<div>{s}</div>"
         current += 1
         return s
 

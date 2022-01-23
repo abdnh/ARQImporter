@@ -27,7 +27,9 @@
                 header.textContent = showAllLink.textContent;
                 div.appendChild(header);
                 div.appendChild(allQuestionsContainer);
-                for(const child of allQuestionsContainer.children) {
+                for(let i = 0; i < allQuestionsContainer.children.length; i++) {
+                    const child = allQuestionsContainer.children[i];
+                    const seq = i + 1;
                     let questionElement, answerElement, titleElement;
                     if(child.children.length == 2) {
                         questionElement = child.children[0];
@@ -41,6 +43,9 @@
                     }
                     questionElement.classList.add("arq-q", "alert");
                     answerElement.classList.add("arq-a", "alert");
+                    questionElement.id = `arq-q-${seq}`;
+                    answerElement.id = `arq-a-${seq}`;
+                    child.id = `arq-${seq}`;
                 }
                 hintLink.innerHTML = div.innerHTML;
             }

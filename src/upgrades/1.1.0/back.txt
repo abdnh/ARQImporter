@@ -27,25 +27,21 @@
                 header.textContent = showAllLink.textContent;
                 div.appendChild(header);
                 div.appendChild(allQuestionsContainer);
+                let seq = 1;
                 for(let i = 0; i < allQuestionsContainer.children.length; i++) {
                     const child = allQuestionsContainer.children[i];
-                    const seq = i + 1;
-                    let questionElement, answerElement, titleElement;
-                    if(child.children.length == 2) {
-                        questionElement = child.children[0];
-                        answerElement = child.children[1];
+                    if(child.children.length == 0) {
+                        child.classList.add("title");
+                        continue;
                     }
-                    else {
-                        titleElement = child.children[0];
-                        questionElement = child.children[1];
-                        answerElement = child.children[2];
-                        titleElement.classList.add("title");
-                    }
+                    const questionElement = child.children[0];
+                    const answerElement = child.children[1];
                     questionElement.classList.add("arq-q", "alert");
                     answerElement.classList.add("arq-a", "alert");
                     questionElement.id = `arq-q-${seq}`;
                     answerElement.id = `arq-a-${seq}`;
                     child.id = `arq-${seq}`;
+                    seq++;
                 }
                 hintLink.innerHTML = div.innerHTML;
             }

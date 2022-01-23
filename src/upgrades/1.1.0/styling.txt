@@ -71,12 +71,12 @@
 }
 
 .allquestions {
-    background: #ddd;
+    background: #f3f3f3;
     padding-top: 5px;
 }
 
 .nightMode .allquestions {
-    background: #414141;
+    background: #363030;
 }
 
 a.text {

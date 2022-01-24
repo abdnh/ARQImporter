@@ -151,13 +151,13 @@ def cleanse_text(string: str) -> List[str]:
 def write_question_set_to_file(question_set, title):
     current = 1
 
-    def format_line(line, previos_line):
+    def format_line(line, previous_line):
         nonlocal current
         question = line["question"]
         answer = line["answer"]
         chapter = line["chapter"]
-        prev_chapter = previos_line["chapter"]
         s = f"<div><div>{question}</div><div>{answer}</div></div>"
+        prev_chapter = previous_line["chapter"]
         if chapter != prev_chapter:
             s = f"<div>{chapter}</div>" + s
         current += 1

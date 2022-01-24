@@ -155,9 +155,10 @@ def write_question_set_to_file(question_set, title):
         nonlocal current
         question = line["question"]
         answer = line["answer"]
+        extra = line["extra"]
         chapter = line["chapter"]
-        s = f"<div><div>{question}</div><div>{answer}</div></div>"
         prev_chapter = previous_line["chapter"]
+        s = f"<div><div>{question}</div><div>{answer}</div><div>{extra}</div></div>"
         if chapter != prev_chapter:
             s = f"<div>{chapter}</div>" + s
         current += 1

@@ -35,10 +35,14 @@
                     }
                     const questionElement = child.children[0];
                     const answerElement = child.children[1];
+                    const extraElement = child.children[2];
                     questionElement.classList.add("arq-q", "alert");
                     answerElement.classList.add("arq-a", "alert");
+                    extraElement.classList.add("extra", "alert");
                     questionElement.id = `arq-q-${seq}`;
                     answerElement.id = `arq-a-${seq}`;
+                    extraElement.id = `arq-e-${seq}`;
+                    child.classList.add("arq-block")
                     child.id = `arq-${seq}`;
                     seq++;
                 }

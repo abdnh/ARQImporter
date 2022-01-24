@@ -79,6 +79,14 @@
     background: #363030;
 }
 
+.extra:empty {
+    display:none;
+}
+
+.arq-block{
+    margin-bottom:30px;
+}
+
 a.text {
     text-decoration: none;
 }

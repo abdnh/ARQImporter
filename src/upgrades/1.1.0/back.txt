@@ -39,6 +39,12 @@
                     answerElement.classList.add("arq-a", "alert");
                     questionElement.id = `arq-q-${seq}`;
                     answerElement.id = `arq-a-${seq}`;
+                    if(child.children.length > 2) {
+                        const extraElement = child.children[2];
+                        extraElement.classList.add("extra", "alert");
+                        extraElement.id = `arq-e-${seq}`;
+                    }
+                    child.classList.add("arq-block")
                     child.id = `arq-${seq}`;
                     seq++;
                 }

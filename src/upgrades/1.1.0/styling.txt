@@ -28,7 +28,7 @@
 }
 
 .nightMode .arq-q {
-    background: #479da0;
+    background: #6998AB;
     color: #fff;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .nightMode .extra {
-    background: #476d7c;
+    background: #406882;
 }
 
 .nightMode .arq-q, .nightMode .extra {
@@ -51,7 +51,7 @@
 }
 
 .nightMode .arq-a {
-    background: #254b62;
+    background: #1A374D;
     color: #fff;
 }
 
@@ -79,8 +79,16 @@
     background: #363030;
 }
 
+.extra:empty {
+    display:none;
+}
+
+.arq-block{
+    margin-bottom:30px;
+}
+
 a.text {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .counterbox {

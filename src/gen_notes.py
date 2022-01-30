@@ -1,4 +1,5 @@
 from typing import Any, Callable, List, TYPE_CHECKING, Optional
+from aqt.utils import showWarning
 import json
 import sys
 
@@ -188,14 +189,24 @@ def add_notes(
     question_marker: bool = True,
     chapter_marker: Optional[str] = None,
     extra_marker: Optional[str] = None,
+    prev_imported_number: Optional[int] = 0,
 ):
 
-    added = 0
+    added = prev_imported_number
     model = col.models.by_name("ARQ 1.0")
     lines = parse_questions(
         text, separator, question_marker, chapter_marker, extra_marker
     )
-    for line in lines:
+    if len(lines) <= prev_imported_number:
+        showWarning(
+            "عدد الأسئلة المستوردة سابقاً أكبر من عددها في النص الحالي. "
+            "تأكد من أنك أدخلت العدد الصحيح، "
+            "أو تأكد من أنك أدخلت النص الكامل."
+        )
+        return
+    for current_line, line in enumerate(lines):
+        if current_line < prev_imported_number:
+            continue
         question = line["question"]
         answer = line["answer"]
         chapter = line["chapter"]
@@ -210,4 +221,4 @@ def add_notes(
     if not TESTING:
         write_question_set_to_file(lines, title)
 
-    return added
+    return (added - prev_imported_number)

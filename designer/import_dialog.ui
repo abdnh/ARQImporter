@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>759</height>
+    <width>580</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -126,6 +126,23 @@
       <widget class="QCheckBox" name="recognizeExtraCheckBox">
        <property name="text">
         <string>التعرف على المعلومات الإضافية التي تبدأ برمز</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QSpinBox" name="previosImportedQuestionsNumber">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="maximum">
+        <number>99999999</number>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QCheckBox" name="previosImportedQuestionsCheckBox">
+       <property name="text">
+        <string>استوردت بطاقات من هذا النص من قبل؟ عددها</string>
        </property>
       </widget>
      </item>
@@ -284,6 +301,10 @@
   <tabstop>qa_marker</tabstop>
   <tabstop>recognizeChaptersCheckBox</tabstop>
   <tabstop>chapterLineEdit</tabstop>
+  <tabstop>recognizeExtraCheckBox</tabstop>
+  <tabstop>extraLineEdit</tabstop>
+  <tabstop>previosImportedQuestionsCheckBox</tabstop>
+  <tabstop>previosImportedQuestionsNumber</tabstop>
   <tabstop>textBox</tabstop>
   <tabstop>addCardsButton</tabstop>
   <tabstop>cancelButton</tabstop>

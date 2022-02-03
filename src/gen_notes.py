@@ -34,7 +34,7 @@ def populate_note(
     note["إضافي"] = extra
     note["عنوان"] = title
     note["رقم السؤال"] = str(seq)
-    note["كل الأسئلة"] = f'<img src="_{title}.js">'
+    note["كل الأسئلة"] = f'<img src="{title}.js">'
 
 
 def parse_questions(
@@ -173,7 +173,7 @@ def write_question_set_to_file(question_set, title):
     # save question set to media folder
     text = "".join(lines)
     js = f"var ARQText = {json.dumps(text, ensure_ascii=False)};"
-    fname = f"_{title}.js"
+    fname = f"{title}.js"
     mw.col.media.trash_files([fname])
     mw.col.media.write_data(fname, js.encode())
 

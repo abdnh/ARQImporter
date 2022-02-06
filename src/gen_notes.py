@@ -204,9 +204,7 @@ def add_notes(
             "أو تأكد من أنك أدخلت النص الكامل."
         )
         return
-    for current_line, line in enumerate(lines):
-        if current_line < prev_imported_number:
-            continue
+    for line in lines[prev_imported_number:]:
         question = line["question"]
         answer = line["answer"]
         chapter = line["chapter"]

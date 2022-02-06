@@ -10,13 +10,9 @@
 
 <script>
     // https://www.reddit.com/r/Anki/comments/3q0fs8/how_to_load_external_javascript/
-    var elementjsFile = '{{كل الأسئلة}}';
-    var jsFile = elementjsFile.slice(10);
-    var jsFile = jsFile.slice(0, -2);
-
     var script = document.createElement("script");
-    script.src = jsFile;
-    document.getElementsByTagName('head')[0].appendChild(script);
+    script.src = '{{كل الأسئلة}}'.slice(10, -2);
+    document.head.appendChild(script);
 </script>
 
 <div class="alert allquestions">

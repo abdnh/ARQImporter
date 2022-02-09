@@ -10,6 +10,8 @@ import os
 import aqt
 from aqt.utils import askUser, showInfo
 from anki.consts import MODEL_CLOZE
+from anki.models import TemplateDict as AnkiTemplate
+from anki.models import NotetypeDict as AnkiModel
 
 
 class TemplateData(ABC):
@@ -22,7 +24,7 @@ class TemplateData(ABC):
     back: str
 
     @classmethod
-    def to_template(cls) -> Dict:
+    def to_template(cls) -> AnkiTemplate:
         "Create and return an Anki template object for this model definition."
         assert aqt.mw is not None, "Tried to use models before Anki is initialized!"
         mm = aqt.mw.col.models
@@ -44,10 +46,10 @@ class ModelData(ABC):
     sort_field: str
     is_cloze: bool
     version: str
-    upgrades: Tuple[Tuple[str, str, Callable[[Dict], None]], ...]
+    upgrades: Tuple[Tuple[str, str, Callable[[AnkiModel], None]], ...]
 
     @classmethod
-    def to_model(cls) -> Tuple[Dict, str]:
+    def to_model(cls) -> Tuple[AnkiModel, str]:
         """
         Create and return a pair of (Anki model object, version spec)
         for this model definition.
@@ -89,7 +91,7 @@ class ModelData(ABC):
         at_version = current_version
         for cur_ver, new_ver, func in cls.upgrades:
             if at_version == cur_ver:
-                func(model, cls)
+                func(model)
                 at_version = new_ver
         if at_version != current_version:
             aqt.mw.col.models.save(model)

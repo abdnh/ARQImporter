@@ -90,7 +90,7 @@ def parse_questions(
     ret = []
     cur_question = []
     cur_answer = []
-    cur_chapter = []
+    cur_chapter: List[str] = []
     cur_extra = []
 
     i = 0
@@ -188,7 +188,7 @@ def add_notes(
     question_marker: bool = True,
     chapter_marker: Optional[str] = None,
     extra_marker: Optional[str] = None,
-    prev_imported_number: Optional[int] = 0,
+    prev_imported_number: int = 0,
 ) -> int:
 
     added = prev_imported_number

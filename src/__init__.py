@@ -4,7 +4,7 @@ if "unittest" not in sys.modules:
     # pylint: disable=import-error, no-name-in-module
     # pylint: disable=invalid-name
     import aqt
-    from aqt.qt import QAction  # type: ignore
+    from aqt.qt import QAction, qconnect  # type: ignore
     from aqt.utils import showWarning
 
     from .arqimporter_dialog import ARQImporterDialog
@@ -28,6 +28,5 @@ if "unittest" not in sys.modules:
         action = QAction(aqt.mw)
         action.setText("استيراد الأسئلة العربية")
         aqt.mw.form.menuTools.addAction(action)
-        action.triggered.connect(open_dialog)
-
+        qconnect(action.triggered, open_dialog)
         aqt.gui_hooks.profile_did_open.append(models.ensure_note_type)

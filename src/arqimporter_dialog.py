@@ -124,7 +124,7 @@ class ARQImporterDialog(QDialog):
                 key=lambda n: int(n["رقم السؤال"]),
             )[:prev_imported_number]
             for note in old_notes:
-                note["إضافي"] += "<br>"
+                note["إضافي"] += " "
                 note.flush()
 
             super(ARQImporterDialog, self).accept()

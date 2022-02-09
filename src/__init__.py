@@ -22,7 +22,7 @@ if "unittest" not in sys.modules:
             )
             return
         dialog = ARQImporterDialog(aqt.mw)
-        dialog.exec_()
+        dialog.exec()
 
     if aqt.mw is not None:
         action = QAction(aqt.mw)

@@ -8,10 +8,18 @@
 <div class="extra alert">{{إضافي}}</div>
 {{/إضافي}}
 
+<script>
+    // https://www.reddit.com/r/Anki/comments/3q0fs8/how_to_load_external_javascript/
+    var script = document.createElement("script");
+    script.src = '{{كل الأسئلة}}'.slice(10, -2);
+    document.head.appendChild(script);
+</script>
+
 <div class="alert allquestions">
     <a href="#" id="show-all">كل الأسئلة</a>
     <div id="hintlink"></div>
 </div>
+
 <script>
     (function () {
         const hintLink = document.getElementById('hintlink');
@@ -59,8 +67,6 @@
         });
     })();
 </script>
-
-<script src="_{{عنوان}}.js"></script>
 
 <script>
     var counter = 0;

@@ -8,7 +8,6 @@ import aqt.editor
 from aqt.utils import getFile, showWarning, askUser, tooltip
 from anki.notes import Note
 
-
 from . import import_dialog as arqimporter_form
 from .gen_notes import add_notes, cleanse_text
 from . import models
@@ -33,6 +32,9 @@ class ARQImporterDialog(QDialog):
         self.form.recognizeExtraCheckBox.toggled.connect(
             lambda t: self.form.extraLineEdit.setEnabled(t)
         )
+        self.form.previosImportedQuestionsCheckBox.toggled.connect(
+            lambda t: self.form.previosImportedQuestionsNumber.setEnabled(t)
+        )
 
         opt = QTextOption()
         opt.setTextDirection(Qt.RightToLeft)
@@ -47,8 +49,13 @@ class ARQImporterDialog(QDialog):
             showWarning("يجب أن تدخل عنوانًا لمجموعة الأسئلة.")
             return
 
+        prev_imported_number = (
+            self.form.previosImportedQuestionsNumber.value()
+            if self.form.previosImportedQuestionsCheckBox.isChecked()
+            else 0
+        )
         escaped_title = title.replace('"', '\\"')
-        if self.mw.col.find_notes(
+        if (prev_imported_number == 0) and self.mw.col.find_notes(
             f'"note:{models.ARQOne.name}" ' f'"عنوان:{escaped_title}"'
         ):
             showWarning(
@@ -94,6 +101,7 @@ class ARQImporterDialog(QDialog):
                 question_marker,
                 chapter_marker,
                 extra_marker,
+                prev_imported_number,
             )
         except KeyError as e:
             showWarning(
@@ -107,6 +115,18 @@ class ARQImporterDialog(QDialog):
             return
 
         if notes_generated:
+            # a hack to mark previously imported notes as updated so that importing/exporting works as expected
+            old_nids = self.mw.col.find_notes(
+                f'"note:{models.ARQOne.name}" ' f'"عنوان:{escaped_title}"'
+            )
+            old_notes = sorted(
+                map(lambda nid: self.mw.col.get_note(nid), old_nids),
+                key=lambda n: int(n["رقم السؤال"]),
+            )[:prev_imported_number]
+            for note in old_notes:
+                note["إضافي"] += " "
+                note.flush()
+
             super(ARQImporterDialog, self).accept()
             self.mw.reset()
             tooltip("%i notes added." % notes_generated)

@@ -1,6 +1,6 @@
 import sys
 
-if "pytest" not in sys.modules:
+if "unittest" not in sys.modules:
     # pylint: disable=import-error, no-name-in-module
     # pylint: disable=invalid-name
     import aqt

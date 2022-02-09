@@ -224,6 +224,7 @@ def mock_note():
     question_marker = True
     chapter_marker = "#"
     extra_marker = None
+    prev_imported_number = 0
     text = cleanse_text(test_text)
     return dict(locals())
 
@@ -286,6 +287,24 @@ class TestGenNotes(unittest.TestCase):
         self.assertEqual(added, 1)
         notes = self.mock_note["col"].notes
         self.assertEqual(notes[0]["إضافي"], "٣٠٠ لتر تقريبا")
+
+    def test_previously_imported_notes(self):
+        self.mock_note["prev_imported_number"] = 2
+        added = add_notes(**self.mock_note)
+        self.assertEqual(added, 55)
+        notes = self.mock_note["col"].notes
+        self.assertEqual(notes[0]["سؤال"], "أبواب علم أصول الفقه؟")
+        self.assertEqual(
+            notes[0]["جواب"],
+            "04- عِلْمُ الأُصُولِ أَرْبَعٌ: [1]أَحْكَامُ .. [2]أَدِلَّةٌ، [3]دَلَالَةٌ، [4]حُكَّامُ **",
+        )
+        self.assertEqual(notes[0]["رقم السؤال"], "3")
+        self.assertEqual(notes[1]["سؤال"], "أقسام الأحكام الفقهية؟")
+        self.assertEqual(
+            notes[1]["جواب"],
+            "05- فَالأَوَّلُ: الأَحْكَامُ فِي قِسْمَيْنِ: .. تَكْلِيْفٌ اوْ وَضْعٌ بِغَيرِ مَيْنِ **",
+        )
+        self.assertEqual(notes[1]["رقم السؤال"], "4")
 
 
 if __name__ == "__main__":

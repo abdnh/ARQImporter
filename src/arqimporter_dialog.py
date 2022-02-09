@@ -114,7 +114,7 @@ class ARQImporterDialog(QDialog):
             )  # pylint: disable=no-member
             return
 
-        if notes_generated:
+        if notes_generated >= 0:
             # a hack to mark previously imported notes as updated so that importing/exporting works as expected
             old_nids = self.mw.col.find_notes(
                 f'"note:{models.ARQOne.name}" ' f'"عنوان:{escaped_title}"'
@@ -130,6 +130,12 @@ class ARQImporterDialog(QDialog):
             super(ARQImporterDialog, self).accept()
             self.mw.reset()
             tooltip("%i notes added." % notes_generated)
+        else:
+            showWarning(
+                "عدد الأسئلة المستوردة سابقاً أكبر من عددها في النص الحالي. "
+                "تأكد من أنك أدخلت العدد الصحيح، "
+                "أو تأكد من أنك أدخلت النص الكامل."
+            )
 
     def onOpenFile(self):
         if self.form.textBox.toPlainText().strip() and not askUser(

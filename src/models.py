@@ -157,7 +157,7 @@ class ARQOne(ModelData):
         os.path.join(SRCDIR, "upgrades/1.1.0/styling.txt"), encoding="utf-8"
     ) as f:
         styling = f.read()
-    sort_field = "سؤال"
+    sort_field = "رقم السؤال"
     is_cloze = False
     version = "1.1.0"
     upgrades = ()

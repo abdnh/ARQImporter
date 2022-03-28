@@ -1,14 +1,14 @@
-# pylint: disable=no-name-in-module
-from PyQt5.QtWidgets import QDialog
-from PyQt5.QtGui import QDesktopServices, QTextOption
-from PyQt5.QtCore import QUrl, Qt
-
 import aqt
+from aqt.qt import *
+from aqt import qtmajor
 import aqt.editor
 from aqt.utils import getFile, showWarning, askUser, tooltip
 from anki.notes import Note
 
-from . import import_dialog as arqimporter_form
+if qtmajor > 5:
+    from . import import_dialog_qt6 as arqimporter_form
+else:
+    from . import import_dialog_qt5 as arqimporter_form
 from .gen_notes import add_notes, cleanse_text
 from . import models
 
@@ -37,8 +37,8 @@ class ARQImporterDialog(QDialog):
         )
 
         opt = QTextOption()
-        opt.setTextDirection(Qt.RightToLeft)
-        opt.setAlignment(Qt.AlignRight)
+        opt.setTextDirection(Qt.LayoutDirection.RightToLeft)
+        opt.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.form.textBox.document().setDefaultTextOption(opt)
 
     def accept(self):

@@ -1,5 +1,6 @@
 mypy
-pyqt5
 anki>=2.1.49
 aqt>=2.1.49
 black
+ankibuild
+git+https://github.com/abdnh/ankibuild.git

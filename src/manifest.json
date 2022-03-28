@@ -1,4 +1,1 @@
-{
-    "name": "ARQImporter - مستورد الأسئلة العربية",
-    "package": "1299710950"
-}
+{"name": "ARQImporter - مستورد الأسئلة العربية", "package": "ARQImporter", "conflicts": ["1299710950"]}

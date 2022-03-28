@@ -1,17 +1,14 @@
-.PHONY: all forms zip clean format check tests
-all: zip
+.PHONY: all zip ankiweb run clean format check tests
+all: ankiweb zip
 
-forms: src/import_dialog.py
-zip: forms ARQImporter.ankiaddon
+zip:
+	python -m ankibuild --type package --install --qt all
 
-src/import_dialog.py: designer/import_dialog.ui
-	pyuic5 $^ > $@
+ankiweb:
+	python -m ankibuild --type ankiweb --install --qt all
 
-ARQImporter.ankiaddon: $(shell find src/ -type f)
-	rm -f $@
-	rm -f src/meta.json
-	rm -rf src/__pycache__
-	( cd src/; zip -r ../$@ * )
+run: zip
+	python -m ankirun
 
 format:
 	python -m black src/ tests/
@@ -23,8 +20,4 @@ tests:
 	python -m unittest
 
 clean:
-	rm -f *.pyc
-	rm -f src/*.pyc
-	rm -f src/__pycache__
-	rm -f src/import_dialog.py
-	rm -f ARQImporter.ankiaddon
+	rm -rf build/

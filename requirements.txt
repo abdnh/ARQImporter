@@ -3,4 +3,4 @@ anki>=2.1.49
 aqt>=2.1.49
 black
 ankibuild
-git+https://github.com/abdnh/ankibuild.git
+git+https://github.com/abdnh/ankibuild#egg=ankibuild[qt5,qt6]
